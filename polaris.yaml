@@ -1,0 +1,8 @@
+global:
+  serverConnector:
+    addresses:
+      - 10.10.0.44:8091
+config:
+  configConnector:
+    addresses:
+      - 10.10.0.44:8093

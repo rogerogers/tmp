@@ -1,0 +1,17 @@
+2022-07-04 16:35:25.514606Z	info	network	network/conn.go:99	connection {ID: 11793089, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 16:35:26.533860Z	info	network	network/conn.go:99	connection {ID: 2848906089, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 16:35:26.597865Z	info	network	network/conn.go:99	connection {ID: 308784683, Address: 10.10.0.44:8093}: close, curRef is 0
+2022-07-04 17:33:46.003225Z	info	network	network/conn.go:99	connection {ID: 3285661374, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 17:33:47.070023Z	info	network	network/conn.go:99	connection {ID: 4013351609, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 17:33:47.156258Z	info	network	network/conn.go:99	connection {ID: 3267685236, Address: 10.10.0.44:8093}: close, curRef is 0
+2022-07-04 17:37:12.264993Z	info	network	network/conn.go:99	connection {ID: 2422835266, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 17:37:13.288079Z	info	network	network/conn.go:99	connection {ID: 3048608722, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 17:37:13.382003Z	info	network	network/conn.go:99	connection {ID: 3494159625, Address: 10.10.0.44:8093}: close, curRef is 0
+2022-07-04 18:12:25.364147Z	info	network	network/conn.go:99	connection {ID: 1956149539, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 18:12:26.423515Z	info	network	network/conn.go:99	connection {ID: 3330717194, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 18:12:26.512602Z	info	network	network/conn.go:99	connection {ID: 1191171439, Address: 10.10.0.44:8093}: close, curRef is 0
+2022-07-04 18:15:30.363663Z	info	network	network/conn.go:99	connection {ID: 4215952131, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 18:15:31.428201Z	info	network	network/conn.go:99	connection {ID: 126632275, Address: 10.10.0.44:8091}: close, curRef is 0
+2022-07-04 18:15:31.464354Z	info	network	network/conn.go:99	connection {ID: 3034915177, Address: 10.10.0.44:8093}: close, curRef is 0
+2022-07-04 18:15:37.035505Z	info	network	network/conn.go:99	connection {ID: 3383868531, Address: 10.10.0.44:8093}: close, curRef is 0
+2022-07-04 18:15:37.572692Z	info	network	network/conn.go:99	connection {ID: 1839046099, Address: 10.10.0.44:8093}: close, curRef is 0
