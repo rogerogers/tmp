@@ -2,7 +2,6 @@ package config
 
 import (
 	"context"
-	"fmt"
 	"path/filepath"
 	"strings"
 
@@ -50,15 +49,14 @@ func (w *Watcher) Next() ([]*config.KeyValue, error) {
 
 	select {
 	case event := <-w.changeChan:
-		fmt.Println(fmt.Sprintf("received change event by channel. %+v", event))
+		return []*config.KeyValue{
+			{
+				Key:    w.configFile.GetFileName(),
+				Value:  []byte(event.NewValue),
+				Format: strings.TrimPrefix(filepath.Ext(w.configFile.GetFileName()), "."),
+			},
+		}, nil
 	}
-	return []*config.KeyValue{
-		{
-			Key:    "fuck",
-			Value:  []byte("fuckyou"),
-			Format: strings.TrimPrefix(filepath.Ext("key.json"), "."),
-		},
-	}, nil
 }
 
 func (w *Watcher) Close() error {
