@@ -1,7 +1,7 @@
 package config
 
 import (
-	"context"
+	"fmt"
 	"path/filepath"
 	"strings"
 
@@ -12,43 +12,26 @@ import (
 
 type Watcher struct {
 	configFile polaris.ConfigFile
-
-	content chan string
-	// cancelListenConfig cancelListenConfigFunc
 	closed     bool
-	ctx        context.Context
-	cancel     context.CancelFunc
 	changeChan chan model.ConfigFileChangeEvent
 }
 
-// type cancelListenConfigFunc func(params vo.ConfigParam) (err error)
-
 func newWatcher(configFile polaris.ConfigFile) *Watcher {
-	// ctx, cancel := context.WithCancel(ctx)
 	changeChan := make(chan model.ConfigFileChangeEvent)
 	configFile.AddChangeListenerWithChannel(changeChan)
 
 	w := &Watcher{
 		configFile: configFile,
-		// cancelListenConfig: cancelListenConfig,
-		content:    make(chan string, 100),
 		changeChan: changeChan,
-
-		// ctx:    ctx,
-		// cancel: cancel,
 	}
 	return w
 }
 
 func (w *Watcher) Next() ([]*config.KeyValue, error) {
-	// select {
-	// case <-w.ctx.Done():
-	// 	return nil, w.ctx.Err()
-	// case content := <-w.content:
-	// 	k := w.dataID
 
 	select {
 	case event := <-w.changeChan:
+		fmt.Println(event)
 		return []*config.KeyValue{
 			{
 				Key:    w.configFile.GetFileName(),
@@ -60,7 +43,7 @@ func (w *Watcher) Next() ([]*config.KeyValue, error) {
 }
 
 func (w *Watcher) Close() error {
-	if w.closed == false {
+	if !w.closed {
 		close(w.changeChan)
 	}
 	return nil

@@ -1,13 +1,13 @@
 package config
 
 import (
-	"context"
 	"errors"
 	"fmt"
 	"path/filepath"
 	"strings"
 
 	"github.com/go-kratos/kratos/v2/config"
+
 	"github.com/polarismesh/polaris-go"
 )
 
@@ -15,35 +15,27 @@ import (
 type Option func(o *options)
 
 type options struct {
-	ctx        context.Context
 	namespace  string
 	fileGroup  string
 	fileName   string
 	configFile polaris.ConfigFile
 }
 
-// WithContext with registry context.
-func WithContext(ctx context.Context) Option {
-	return func(o *options) {
-		o.ctx = ctx
-	}
-}
-
-// WithNamespace is config namespace
+// WithNamespace with polaris config namespace
 func WithNamespace(namespace string) Option {
 	return func(o *options) {
 		o.namespace = namespace
 	}
 }
 
-// WithFileGroup is config fileGroup
+// WithFileGroup with polaris config fileGroup
 func WithFileGroup(fileGroup string) Option {
 	return func(o *options) {
 		o.fileGroup = fileGroup
 	}
 }
 
-// WithFileName is config fileName
+// WithFileName with polaris config fileName
 func WithFileName(fileName string) Option {
 	return func(o *options) {
 		o.fileName = fileName
@@ -57,7 +49,6 @@ type source struct {
 
 func New(client *polaris.ConfigAPI, opts ...Option) (config.Source, error) {
 	options := &options{
-		ctx:       context.Background(),
 		namespace: "default",
 		fileGroup: "",
 		fileName:  "",
@@ -99,7 +90,6 @@ func (s *source) Load() ([]*config.KeyValue, error) {
 		return nil, err
 	}
 	content := configFile.GetContent()
-	// kvs := make([]*config.KeyValue, 0, len(content))
 	k := s.options.fileName
 
 	s.options.configFile = configFile

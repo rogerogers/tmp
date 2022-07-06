@@ -16,12 +16,12 @@ import (
 var (
 	namespace     = "default"
 	fileGroup     = "test"
-	fileName      = "test.yaml"
+	fileName      = "default.yaml"
 	originContent = `server:
 		port: 8080`
 	updatedContent = `server:
 		port: 8090`
-	configCenterUrl = "http://10.10.0.44:8090"
+	configCenterUrl = "http://127.0.0.1:8090"
 )
 
 func makeJsonRequest(uri string, data string, method string, headers map[string]string) ([]byte, error) {
@@ -54,7 +54,6 @@ type LoginRes struct {
 }
 
 type configClient struct {
-	host  string
 	token string
 }
 
@@ -124,10 +123,9 @@ func (client *configClient) updateConfigFile() error {
 		"name":      fileName,
 		"namespace": namespace,
 		"group":     fileGroup,
-		"content": `server:
-		port: 8090`,
-		"modifyBy": "polaris",
-		"format":   "yaml",
+		"content":   updatedContent,
+		"modifyBy":  "polaris",
+		"format":    "yaml",
 	})
 	if err != nil {
 		return err
@@ -275,6 +273,9 @@ func TestExtToFormat(t *testing.T) {
 	}()
 
 	configApi, err := polaris.NewConfigAPI()
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	config, err := New(&configApi, WithNamespace(namespace), WithFileGroup(fileGroup), WithFileName(fileName))
 	if err != nil {
